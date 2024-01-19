@@ -22,7 +22,7 @@ export default function App() {
     return correctedWord || item;
   });
 
-  correctedWords.join(" ");
+  // correctedWords.join(" ");
 
   const firstCorrection = correctedWords.find(
     (word, idx) => word.toLowerCase() !== words[idx].toLowerCase()
