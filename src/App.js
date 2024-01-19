@@ -11,26 +11,26 @@ export default function App() {
   const [text, setText] = useState("");
   const [suggestions, setSuggestions] = useState("");
 
-  
+
   const handleChange = (e) => {
-    const inputText = e.target.value;
-    setText(inputText);
-  
-    const words = inputText.split(" ");
-    const correctedWords = words.map((item) => {
-      const correctedWord = customDictionary[item.toLowerCase()];
-      return correctedWord || item;
-    });
-  
-    const correctedText = correctedWords.join(" ");
-    setText(correctedText);
-  
-    const firstCorrection = words.find(
-      (word, idx) => correctedWords[idx].toLowerCase() !== word.toLowerCase()
-    );
-    setSuggestions(firstCorrection || "");
-  };
-  
+  const inputText = e.target.value;
+  setText(inputText);
+
+  const words = inputText.split(" ");
+  const correctedWords = words.map((item) => {
+    const correctedWord = customDictionary[item.toLowerCase()];
+    return correctedWord || item;
+  });
+
+  const correctedText = correctedWords.join(" ");
+  setText(correctedText);
+
+  const firstCorrection = correctedWords.find(
+    (word, idx) => word.toLowerCase() !== words[idx].toLowerCase()
+  );
+  setSuggestions(firstCorrection || "");
+};
+
 
   return (
     <div>
