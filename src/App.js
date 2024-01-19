@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 const customDictionary = {
   teh: "the",
   wrok: "work",
@@ -15,22 +14,21 @@ export default function App() {
   const handleChange = (e) => {
     const inputText = e.target.value;
     setText(inputText);
-  
+
     const words = inputText.split(" ");
     const correctedWords = words.map((item) => {
       const correctedWord = customDictionary[item.toLowerCase()];
       return correctedWord || item;
     });
-  
+
     const correctedText = correctedWords.join(" ");
     setText(correctedText);
-  
+
     const firstCorrection = correctedWords.find(
-      (word, idx) => word !== words[idx]
+      (word, idx) => word.toLowerCase() !== words[idx].toLowerCase()
     );
     setSuggestions(firstCorrection || "");
   };
-  
 
   return (
     <div>
@@ -44,7 +42,7 @@ export default function App() {
       />
       {suggestions && (
         <p>
-          Did you mean:<strong>{suggestions}?</strong>
+          Did you mean: <strong>{suggestions}?</strong>
         </p>
       )}
     </div>
