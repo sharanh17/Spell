@@ -15,18 +15,22 @@ export default function App() {
   const handleChange = (e) => {
     const inputText = e.target.value;
     setText(inputText);
+  
     const words = inputText.split(" ");
     const correctedWords = words.map((item) => {
       const correctedWord = customDictionary[item.toLowerCase()];
       return correctedWord || item;
     });
-
-    correctedWords.join(" ");
+  
+    const correctedText = correctedWords.join(" ");
+    setText(correctedText);
+  
     const firstCorrection = correctedWords.find(
       (word, idx) => word !== words[idx]
     );
     setSuggestions(firstCorrection || "");
   };
+  
 
   return (
     <div>
